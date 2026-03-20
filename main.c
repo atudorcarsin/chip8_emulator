@@ -167,6 +167,9 @@ int main(void) {
 
         SDL_RenderPresent(renderer);
 
+        chip8.delayTimer = chip8.delayTimer > 0 ? chip8.delayTimer - 1 : 0;
+        chip8.soundTimer = chip8.soundTimer > 0 ? chip8.soundTimer - 1 : 0;
+
         uint32_t frameTime = SDL_GetTicks() - startTime;
         if (frameTime < FRAME_TIME_MS) {
             SDL_Delay(FRAME_TIME_MS - frameTime);
