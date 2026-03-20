@@ -13,9 +13,9 @@ struct Chip8 {
     uint8_t stackPointer;
     uint8_t delayTimer;
     uint8_t soundTimer;
-    uint8_t generalPurposeRegisters[16];
-    // TODO: Convert to use single carry flag instead of one per register
-    bool VCarryFlags[16];
+    uint8_t V[16];
+    bool VCarryFlag;
+    bool keypad[16];
 };
 
 extern struct Chip8 chip8;
