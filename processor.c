@@ -190,7 +190,7 @@ void execute() {
                 }
             }
             else if (instructions.nn == 0x29) {
-                chip8.indexRegister = FONT_START_ADDRESS + (5 * chip8.V[instructions.x] & 0xF);
+                chip8.indexRegister = FONT_START_ADDRESS + ((chip8.V[instructions.x] & 0xF) * 5);
             }
             else if (instructions.nn == 0x33) {
                 uint8_t number = chip8.V[instructions.x];
