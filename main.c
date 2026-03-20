@@ -6,9 +6,13 @@
 #include "font.h"
 #include "chip8.h"
 #include "processor.h"
+#include "instruction_loader.h"
 
 void init();
 void shutdown();
+
+// Change this to load a different program
+const char* INSTRUCTION_FILE = "Maze [David Winter, 199x].ch8";
 
 const uint8_t DISPLAY_SCALE = 10;
 const uint32_t FRAME_TIME_MS = (uint32_t) (1000.0f / 60.0f);
@@ -175,7 +179,7 @@ int main(void) {
 }
 
 void init() {
-    chip8.programCounter = (uint8_t) 0x200;
+    chip8.programCounter = 0x200;
 
     loadFontToMemory(chip8.memory);
 
@@ -195,6 +199,8 @@ void init() {
         printf("Renderer could not be created. SDL_Error: %s\n", SDL_GetError());
         exit(-3);
     }
+
+    loadInstructionsToMemory(INSTRUCTION_FILE);
 }
 
 void shutdown() {
